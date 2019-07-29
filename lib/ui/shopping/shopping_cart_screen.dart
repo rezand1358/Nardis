@@ -135,8 +135,10 @@ Animation<Offset> pulseAnimation;
             if(msg.text=='ORDER_SAVED' &&
             msg.type=='success')
             {
+              BlocProvider.of<GlobalBloc>(context)
+                  .shoppingCartBloc.clearCart();
                 _scaffoldKey.currentState.showSnackBar(new SnackBar(content: Text('ارسال با موفقیت ا نجام شد',style: TextStyle(fontSize: 15.0,),),action: SnackBarAction(label: 'خروج',onPressed: () {
-                  Navigator.popAndPushNamed(context, '/home');}),),);
+                  Navigator.pushReplacementNamed(context, '/home');}),),);
             }
           }
        return

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:nardis/bloc/basic/bloc_provider.dart';
 import 'package:nardis/bloc/basic/global_bloc.dart';
+import 'package:nardis/data/database_helper.dart';
 import 'package:nardis/data/rxbus.dart';
 import 'package:nardis/data/soap_call.dart';
 import 'package:nardis/data/soap_constants.dart';
@@ -62,6 +63,7 @@ List<dynamic> result=await applySoap(method, SoapTypes.SAVEORDER);
         var uuid_temp = uuid.parse(jsonResult);
         if(uuid_temp!=null)
           {
+            databaseHelper.deleteShopCart();
             BlocProvider.of<GlobalBloc>(context)
                 .messageBloc
                 .addition
