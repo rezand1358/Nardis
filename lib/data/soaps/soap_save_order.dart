@@ -64,10 +64,12 @@ List<dynamic> result=await applySoap(method, SoapTypes.SAVEORDER);
         if(uuid_temp!=null)
           {
             databaseHelper.deleteShopCart();
+
+            //Navigator.pushReplacementNamed(context, '/home');
             BlocProvider.of<GlobalBloc>(context)
-                .messageBloc
-                .addition
-                .add(Message("ORDER_SAVED", "success"));
+                .shoppingCartBloc
+                .addMessage
+                .add(Message(text:"ORDER_SAVED",type: "success"));
                 List<dynamic> res=new List();
                 res.add(jsonResult);
                 soapOpers.doAction(res);
@@ -78,7 +80,7 @@ List<dynamic> result=await applySoap(method, SoapTypes.SAVEORDER);
         BlocProvider.of<GlobalBloc>(context)
             .messageBloc
             .addition
-            .add(Message("ORDER_NOT_SAVED", "faild"));
+            .add(Message(text: "ORDER_NOT_SAVED",type: "faild"));
             RxBus.post(ChangeEvent(message: "ORDER_SAVED_ERROR"));
       }
       }

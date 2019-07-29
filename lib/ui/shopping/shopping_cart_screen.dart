@@ -125,39 +125,58 @@ Animation<Offset> pulseAnimation;
           title: Text(Translations.current.basket(),
           style: new TextStyle(color: Colors.white,fontSize: 18.0),)
         ),
-        body: 
-        StreamBuilder(
-        initialData: null,
-        stream: BlocProvider.of<GlobalBloc>(context).messageBloc.messageStream,
-        builder: (BuildContext context, AsyncSnapshot<Message> snapshot) {
-          if(snapshot.hasData){
-          Message msg = snapshot.data;
-            if(msg.text=='ORDER_SAVED' &&
-            msg.type=='success')
-            {
-              BlocProvider.of<GlobalBloc>(context)
-                  .shoppingCartBloc.clearCart();
-                _scaffoldKey.currentState.showSnackBar(new SnackBar(content: Text('ارسال با موفقیت ا نجام شد',style: TextStyle(fontSize: 15.0,),),action: SnackBarAction(label: 'خروج',onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');}),),);
-            }
-          }
-       return
-        StreamBuilder(
-            stream: BlocProvider.of<GlobalBloc>(context)
-                .shoppingCartBloc
-                .cartStream,
+        body:
+         StreamBuilder(
+            stream: BlocProvider.of<GlobalBloc>(context).shoppingCartBloc.cartStream,
             builder: (context, snapshot) {
               
               if (!snapshot.hasData) {
-                return Center(child: Text(Translations.current.bascketisempty()));
+
+                return
+
+                  Center(child: Text(Translations.current.bascketisempty()));
+
               } else {
                 cart = snapshot.data;
+
+
+                if(cart.message!=null &&
+                cart.message.type=='success' &&
+                cart.message.text=='ORDER_SAVED')
+                  {
+                    /*_scaffoldKey.currentState.showSnackBar(new SnackBar(
+                        content: Text(
+                          'ارسال با موفقیت ا نجام شد', style: TextStyle(
+                          fontSize: 15.0,),),
+                        action: SnackBarAction(label: 'بازگشت', onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/home');
+                        })));*/
+                    BlocProvider.of<GlobalBloc>(context).shoppingCartBloc.clearCart();
+                    return Center(
+                        child: Text(Translations.current.sendordersuccessful(),style: TextStyle(fontSize: 30.0,color: Colors.greenAccent),));
+                    /*if (cart.products.length == 0) {
+                      return Center(
+                          child: Text(Translations.current.bascketisempty()));
+                    }*/
+                  }
+                else if(cart.message!=null &&
+                    cart.message.type=='success' &&
+                    cart.message.text=='ORDER_NOT_SAVED')
+                  {
+                    return Center(
+                        child: Text(Translations.current.errorInSend(),style: TextStyle(fontSize: 30.0,color: Colors.redAccent),));
+                  }
                 if (cart.products.length == 0) {
-                  return Center(child: Text(Translations.current.bascketisempty()));
+                  return Center(
+                      child: Text(Translations.current.bascketisempty()));
                 }
-                return Container(
+                return
+
+                Container(
                     padding: EdgeInsets.all(16),
-                    child: Column(children: [
+                    child:
+
+                    Column(children: [
                       Expanded(
                         child: ListView(
                           children: <Widget>[
@@ -187,9 +206,12 @@ Animation<Offset> pulseAnimation;
                           child: _buildConfirmOrder(),
                         ),
                       )
-                    ]));
-              }
-            });
+                    ]
+              ),
+    );
+            }
+
+           // ),
         }),
             );
   }

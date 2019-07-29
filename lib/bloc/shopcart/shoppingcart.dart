@@ -1,12 +1,13 @@
 import 'dart:io';
 
+import 'package:nardis/models/message.dart';
 import 'package:nardis/models/viewmodels/shopping_cart_product_vm.dart';
 import 'package:nardis/repository/product/center_repository.dart';
 
 class ShoppingCart {
   List<ShoppingCartProductVM> products = [];
   double priceNet;
-  //double priceGross;
+  Message message;
   double countAmount;
 
   void addProduct(ShoppingCartProductVM p) {
@@ -76,6 +77,11 @@ class ShoppingCart {
     //products.remove(p);
   }
 
+  void addMessage(Message msg)
+  {
+    message=msg;
+
+  }
   void calculate() {
     priceNet = 0;
     

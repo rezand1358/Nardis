@@ -6,6 +6,7 @@ import 'package:nardis/bloc/shopcart/shoppingcart.dart';
 import 'package:nardis/data/database_helper.dart';
 import 'package:nardis/data/soap_constants.dart';
 import 'package:nardis/data/soaps/soap_save_order.dart';
+import 'package:nardis/models/message.dart';
 import 'package:nardis/models/shopcart_model.dart';
 import 'package:nardis/models/viewmodels/shopping_cart_product_vm.dart';
 import 'package:nardis/repository/order/order_repository.dart';
@@ -16,7 +17,7 @@ class ShoppingCartBloc implements BlocBase {
   static const String TAG = "ShoppingCartBloc";
 
   ShoppingCart cart = ShoppingCart();
-
+  Message message=new Message();
   /// Sinks
   Sink<ShoppingCartProductVM> get addition => itemAdditionController.sink;
   final itemAdditionController = StreamController<ShoppingCartProductVM>();
@@ -27,13 +28,21 @@ class ShoppingCartBloc implements BlocBase {
   Sink<BuildContext> get checkout => checkoutCartController.sink;
   final checkoutCartController = StreamController<BuildContext>();
 
+  Sink<Message> get addMessage => messageController.sink;
+  final messageController=StreamController<Message>();
+
   /// Streams
   Stream<ShoppingCart> get cartStream => _cart.stream;
   final _cart = BehaviorSubject<ShoppingCart>();
 
+  Stream<Message> get cartMessageStream => _cartMessage.stream;
+  final _cartMessage = BehaviorSubject<Message>();
+
+
   ShoppingCartBloc() {
     itemAdditionController.stream.listen(handleItemAdd);
     itemSubtractionController.stream.listen(handleItemRem);
+    messageController.stream.listen(handleMessage);
     checkoutCartController.stream.listen(checkOutcart);
   }
 
@@ -66,6 +75,12 @@ class ShoppingCartBloc implements BlocBase {
     return;
   }
 
+  void handleMessage(Message msg)
+  {
+    message=msg;
+    cart.addMessage(msg);
+    _cart.add(cart);
+  }
   ///
   /// Clears the shopping cart
   ///

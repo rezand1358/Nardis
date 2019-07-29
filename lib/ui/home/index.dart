@@ -24,6 +24,7 @@ import 'package:nardis/data/soaps/soap_save_order.dart';
 import 'package:nardis/data/soaps/special_offers.dart';
 import 'package:nardis/models/change_event.dart';
 import 'package:nardis/models/customer.dart';
+import 'package:nardis/models/message.dart';
 import 'package:nardis/models/product_category_model.dart';
 import 'package:nardis/models/products.dart';
 import 'package:nardis/models/user.dart';
@@ -686,6 +687,10 @@ void registerBus() {
             if (snapshot.data is ShoppingCart) {
               count = snapshot.data.products.length;
             }
+            if(snapshot.data is Message)
+              {
+
+              }
           }
           return 
           new Text(
