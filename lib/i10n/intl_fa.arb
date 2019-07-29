@@ -1,0 +1,395 @@
+{
+  "@@last_modified": "2019-07-22T11:10:43.100753",
+  "userName": "نام کاربری",
+  "@userName": {
+    "description": "نام کاربری",
+    "type": "text",
+    "placeholders": {}
+  },
+  "notValidUsername": "نام کاربری معتبر نمی باشد",
+  "@notValidUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "رمز عبور",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordIsTooShort": "رمز عبور کوتاه می باشد",
+  "@passwordIsTooShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "ورود",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "زبان",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "links": "لینک ها",
+  "@links": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "تماس",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "attendance": "Attendance",
+  "@attendance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "support": "پشتیبانی",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profile": "پروفایل",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "جستجو",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "basket": "سبد خرید",
+  "@basket": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "product": "محصولات",
+  "@product": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help": "راهنما",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "درباره",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "تنظیمات",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ucanbuymorebutpayless": "You Can Buy More But Pay less",
+  "@ucanbuymorebutpayless": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "program": "برنامه",
+  "@program": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "exit": "خروج",
+  "@exit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "ثبت نام",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "ارسال",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "تایید",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resend": "ارسال مجدد",
+  "@resend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "similaritems": "اقلام مشابه",
+  "@similaritems": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "error": "خطا",
+  "@error": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorInSend": "خطا در ا رسال",
+  "@errorInSend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "receive": "دریافت",
+  "@receive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorInReceive": "خطا در دریافت",
+  "@errorInReceive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "ویرایش",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continuation": "ادامه خرید",
+  "@continuation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberisnotcorrect": "تعداد صحیح نیست",
+  "@numberisnotcorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sportFieldPrice": "Sport Field Price",
+  "@sportFieldPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "age": "سن",
+  "@age": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sex": "جنسیت",
+  "@sex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "نام",
+  "@firstName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "نام خانوادگی",
+  "@lastName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "ایمیل",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobile": "موبایل",
+  "@mobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "image": "تصویر",
+  "@image": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "height": "Height",
+  "@height": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "تاریخ",
+  "@date": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "postalcode": "کد پستی",
+  "@postalcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "socialno": "شماره ملی",
+  "@socialno": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tel": "تلفن",
+  "@tel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "address": "آدرس",
+  "@address": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendordersuccessful": "سفارش با موفقیت ارسال شد",
+  "@sendordersuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bascketisempty": "سبد خرید خالی است.",
+  "@bascketisempty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalsum": "جمع:",
+  "@totalsum": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "products": "محصولات",
+  "@products": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "حذف",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendorder": "ارسال سفارش",
+  "@sendorder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productslist": "لیست محصولات",
+  "@productslist": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usercode": "کد کاربری",
+  "@usercode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmmobile": "تایید موبایل",
+  "@confirmmobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmSecurityCode": "تایید کد امنیتی",
+  "@confirmSecurityCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newRequest": "New Request",
+  "@newRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "رمز را فراموش کرده اید",
+  "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNew": "ایجاد",
+  "@createNew": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "خانه",
+  "@home": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offers": "پیشنهادات",
+  "@offers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "خروج",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logoutalarm": "از خروج مطمئن هستید؟",
+  "@logoutalarm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productcode": "کد محصول",
+  "@productcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productcategory": "دسته بندی محصول",
+  "@productcategory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "brands": "برندها",
+  "@brands": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "existance": "موجودی",
+  "@existance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noimage": "بدون تصویر",
+  "@noimage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmrecievecode": "تایید کد امنیتی",
+  "@confirmrecievecode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "counts": "تعداد",
+  "@counts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countincart": "تعداد در سبد",
+  "@countincart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterproductname": "نام محصول راو ارد کنید",
+  "@enterproductname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productsearch": "جستجوی محصول",
+  "@productsearch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productnameisempty": "نام محصول خالی است",
+  "@productnameisempty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadingdata": "در حال بارگذاری",
+  "@loadingdata": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dataloaded": "دریافت اطلاعات انجام شد",
+  "@dataloaded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "plzlogin": "لطفا وارد شوید!",
+  "@plzlogin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "فروشگاه ناردیس",
+  "@title": {
+    "description": "The application title",
+    "type": "text",
+    "placeholders": {}
+  }
+}

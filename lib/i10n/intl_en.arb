@@ -1,0 +1,395 @@
+{
+  "@@last_modified": "2019-07-22T11:10:43.100753",
+  "userName": "Username",
+  "@userName": {
+    "description": "User Name",
+    "type": "text",
+    "placeholders": {}
+  },
+  "notValidUsername": "Not Valid Username",
+  "@notValidUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "password",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordIsTooShort": "password is too short",
+  "@passwordIsTooShort": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Login",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "Language",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "links": "Links",
+  "@links": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contacts",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "attendance": "Attendance",
+  "@attendance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "support": "Support",
+  "@support": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profile": "Profile",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Search",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "basket": "Basket",
+  "@basket": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "product": "Products",
+  "@product": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help": "Help",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "About",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Settings",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ucanbuymorebutpayless": "You Can Buy More But Pay less",
+  "@ucanbuymorebutpayless": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "program": "Program",
+  "@program": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "exit": "Exit",
+  "@exit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Register",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "Send",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resend": "ReSend",
+  "@resend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "similaritems": "Similar Items",
+  "@similaritems": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "error": "Error",
+  "@error": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorInSend": "Error in send",
+  "@errorInSend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "receive": "Receive",
+  "@receive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorInReceive": "Error in receive",
+  "@errorInReceive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Edit",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continuation": "Continuation",
+  "@continuation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberisnotcorrect": "Number is not correct",
+  "@numberisnotcorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sportFieldPrice": "Sport Field Price",
+  "@sportFieldPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "age": "Age",
+  "@age": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sex": "Sex",
+  "@sex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "First Name",
+  "@firstName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastName": "Last Name",
+  "@lastName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobile": "Mobile",
+  "@mobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "image": "Image",
+  "@image": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "height": "Height",
+  "@height": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "date": "Date",
+  "@date": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "postalcode": "PostalCode",
+  "@postalcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "socialno": "SocialNo",
+  "@socialno": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tel": "Tel",
+  "@tel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "address": "Address",
+  "@address": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendordersuccessful": "Order sent successful",
+  "@sendordersuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bascketisempty": "Bascket is Empty.",
+  "@bascketisempty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalsum": "Total:",
+  "@totalsum": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "products": "Products:",
+  "@products": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Delete",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendorder": "Send Order",
+  "@sendorder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productslist": "Products List:",
+  "@productslist": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usercode": "User Code:",
+  "@usercode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmmobile": "Confirm Mobile:",
+  "@confirmmobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmSecurityCode": "Confirm Security Code",
+  "@confirmSecurityCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newRequest": "New Request",
+  "@newRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "Forgot Password",
+  "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNew": "Create New",
+  "@createNew": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "home": "Home",
+  "@home": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offers": "Offers",
+  "@offers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "LogOut",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logoutalarm": "Are you sure to logout?",
+  "@logoutalarm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productcode": "Product Code",
+  "@productcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productcategory": "Product Category",
+  "@productcategory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "brands": "Brands",
+  "@brands": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "existance": "Existance",
+  "@existance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noimage": "No Image",
+  "@noimage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmrecievecode": "Confirm security code",
+  "@confirmrecievecode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "counts": "Counts",
+  "@counts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countincart": "Count in Cart",
+  "@countincart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterproductname": "Enter Product Name",
+  "@enterproductname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productsearch": "Product search",
+  "@productsearch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productnameisempty": "Product Name is Empty",
+  "@productnameisempty": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadingdata": "Loading data",
+  "@loadingdata": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dataloaded": "Data Loaded",
+  "@dataloaded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "plzlogin": "Please Login!",
+  "@plzlogin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "Nardis Shop",
+  "@title": {
+    "description": "The application title",
+    "type": "text",
+    "placeholders": {}
+  }
+}
