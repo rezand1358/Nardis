@@ -63,8 +63,7 @@ dependencies:
   cached_network_image: ^1.0.0
   transparent_image: ^1.0.0
   flutter_advanced_networkimage: ^0.5.0
-  get_version: ^0.1.0
-  package_info: ^0.4.0+5
+  package_info: ^0.4.0+6
   floating_search_bar: ^0.2.0
   uuid: ^2.0.2
   # The following adds the Cupertino Icons font to your application.
