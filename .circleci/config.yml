@@ -15,7 +15,7 @@ jobs:
 
       
 
-      run:
+     - run:
           # build our application
           name: Build Application
           command: xcodebuild
