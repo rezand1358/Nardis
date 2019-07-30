@@ -13,10 +13,7 @@ jobs:
     steps:
       - checkout
 
-      # Install CocoaPods
-      - run:
-          name: Install CocoaPods
-          command: pod install
+      
 
       # Build the app and run tests
       - run:
