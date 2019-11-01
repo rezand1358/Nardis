@@ -9,7 +9,12 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _searchBloc = new SearchBloc();//BlocProvider.of<SearchBloc>(context);
-    return new Scaffold(
+    return  WillPopScope(
+        onWillPop: () async {
+      return Navigator.pushReplacementNamed(context, "/home");
+    },
+    child:
+    Scaffold(
       appBar: new AppBar(
         actions: <Widget>[
           IconButton(
@@ -23,7 +28,8 @@ class SearchPage extends StatelessWidget {
       body: BlocProvider<SearchBloc>(
         builder: (context) =>_searchBloc,
         child:  new SearchScreen(searchBloc:_searchBloc ),
-      )
+      ),
+    ),
     );
   }
 }

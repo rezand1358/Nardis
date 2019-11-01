@@ -25,12 +25,12 @@ class AppBarCollaps extends StatelessWidget {
   {
     categorys=repository.getListOfCategory();
    items= categorys.map((item) =>
-    new CategoryItem(item.name, '',item.code,item.name,SoapOpersConstants.CATEGORY)).toList();
+    new CategoryItem(item.name, item.imageAdd,item.code,item.name,SoapOpersConstants.CATEGORY)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    
+
     return CustomScrollView(
       controller: _controller,
       slivers: <Widget>[
@@ -47,8 +47,11 @@ class AppBarCollaps extends StatelessWidget {
 
                 }
             ),
-
-
+        new Align(
+          alignment: Alignment.centerRight,
+          child:
+          new Text(repository.topMessage,style: TextStyle(fontSize: 14.0,color: Colors.white),)
+        ),
           ],
           leading:
           IconButton(
@@ -106,7 +109,7 @@ class AppBarCollaps extends StatelessWidget {
           automaticallyImplyLeading: true,
         ),*/
         SliverList(
-        
+
             delegate: SliverChildBuilderDelegate(
         (context, pos) => _buildRows(menus,context,pos),
                 childCount:menus.length,
@@ -334,14 +337,14 @@ CategoryItem(this.title,this.image,this.code,this.catname,this.cattype);
 CategoryItem.map(Map<String, dynamic> obj)
  {
 
-   
+
     this.title=obj["title"];
     this.image=obj["image"];
     this.code=obj['code'];
     this.catname=obj['catname'];
     this.cattype=obj['cattype'];
  }
- 
+
  Map<String, dynamic> toMap(CategoryItem item) {
     var map = new Map<String, dynamic>();
     map["title"]=this.title;
@@ -361,5 +364,5 @@ CategoryItem.map(Map<String, dynamic> obj)
     map['cattype']=this.cattype;
     return map;
   }
-  
+
 }

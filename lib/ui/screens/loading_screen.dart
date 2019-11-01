@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:nardis/bloc/basic/bloc_provider.dart';
 import 'package:nardis/bloc/basic/global_bloc.dart';
 import 'package:nardis/bloc/shopcart/shoppingcart_bloc.dart';
+import 'package:nardis/components/do_download.dart';
 import 'package:nardis/components/fancy_background.dart';
 import 'package:nardis/data/database_helper.dart';
 import 'package:nardis/data/rxbus.dart';
 import 'package:nardis/data/soap_constants.dart';
+import 'package:nardis/data/soaps/soap_admin_barand_group.dart';
+import 'package:nardis/data/soaps/soap_admin_product_group.dart';
 import 'package:nardis/data/soaps/soap_brand_group.dart';
 import 'package:nardis/data/soaps/soap_category.dart';
 import 'package:nardis/data/soaps/soap_get_appversion.dart';
@@ -17,6 +20,7 @@ import 'dart:math';
 import 'package:nardis/models/change_event.dart';
 import 'package:nardis/models/shopcart_model.dart';
 import 'package:nardis/models/viewmodels/shopping_cart_product_vm.dart';
+import 'package:nardis/repository/download/download_repository.dart';
 import 'package:nardis/translation_strings.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -36,6 +40,8 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
   Animation<double> _scaleAnimation;
  
   AnimationController _controller;
+  VoidCallback _showBottomSheetCallback;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
  void registerBus() {
     RxBus.register<ChangeEvent>().listen((ChangeEvent event) {
@@ -56,27 +62,48 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
             SoapMessage msg=new SoapMessage();
             msg.call(SoapConstants.METHOD_NAME_GET_MESSAGE);
           }
+
+
           else if(event.message=='MESSAGE_LOADED')
+          {
+            SoapAdminCategory adminCategory=new SoapAdminCategory(context: context);
+            adminCategory.call(SoapConstants.METHOD_NAME_GetAdminProduct_Group, context);
+          }
+
+          else if(event.message=='ADMINCATEGORY_LOADED')
+          {
+            SoapAdminBrandGroups adminBrands=new SoapAdminBrandGroups(context: context);
+            adminBrands.call(SoapConstants.METHOD_NAME_GetAdminBarand_Group, context);
+          }
+          else if(event.message=='ADMINBRAND_LOADED')
           {
             SoapAppVersion appVersion=new SoapAppVersion(context: context);
             appVersion.call(SoapConstants.METHOD_NAME_GET_APP_VERSION);
-          //  _dataLoaded();
-          //   Navigator.pushReplacementNamed(context, '/home');
-           
           }
+
           else if(event.message=='APP_VERSION_CHECKED_VALID')
           {
-            _loadItemsInCart();      
             _dataLoaded();
-            Navigator.pushReplacementNamed(context, '/home');
           }
           else if(event.message=="APP_VERSION_CHECKED_NOTVALID")
           {
-            
+            _modalBottomSheetDownload();
           }
+          else if(event.message=='DOWNLOAD_CANCELED')
+            {
+              _dataLoaded();
+            }
     });
   }
 
+  void _modalBottomSheetDownload(){
+    showModalBottomSheet(
+        context: context,
+        builder: (builder){
+          return DownloadAPK();
+        }
+    );
+  }
 void _loadItemsInCart() async {
   List<ShopCartModel> itemsInCart=new List();
   itemsInCart= await databaseHelper.getShopCartItems();
@@ -92,6 +119,7 @@ void _loadItemsInCart() async {
   void initState() {
     super.initState();
     _loadingInProgress = true;
+    _showBottomSheetCallback=_showPersistBottomSheet;
     registerBus();
     
 
@@ -135,8 +163,55 @@ _controller = new AnimationController(
       body: FancyBackgroundApp(),
     );
   }
- 
 
+
+
+  void _showPersistBottomSheet() {
+    setState(() { // disable the button
+      _showBottomSheetCallback = null;
+    });
+    _scaffoldKey.currentState.showBottomSheet<void>((BuildContext context) {
+      final ThemeData themeData = Theme.of(context);
+      return new Container(
+        height: 350.0,
+        color: Colors.transparent,
+        child: new Container(
+          decoration: new BoxDecoration(
+              color: Colors.white,
+              borderRadius: new BorderRadius.only(
+                  topLeft: const Radius.circular(10.0),
+                  topRight: const Radius.circular(10.0))),
+          child:
+          new Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              new ListTile(leading: new Icon(Icons.close),
+                title: new Text('نسخه جدسد برنامه در دسترس میباشد.جهت دریافت و نصب دکمه دریات را لمس کنید'),
+                onTap: () => null,
+              ),
+              new DownloadAPK(),
+              GestureDetector(
+                onTap:() {
+              setState(() { // re-enable the button
+              _showBottomSheetCallback = null;
+              });
+              },
+                child:
+              new DoDownload(),
+              ),
+            ],
+          ),
+        ),
+      );
+    })
+        .closed.whenComplete(() {
+      if (mounted) {
+        setState(() { // re-enable the button
+          _showBottomSheetCallback = _showPersistBottomSheet;
+        });
+      }
+    });
+  }
   Widget _buildBody() {
     if (_loadingInProgress) {
       return new Stack(
@@ -208,9 +283,11 @@ Widget _buildAnimation() {
   }
  
   void _dataLoaded() {
+   _loadItemsInCart();
     setState(() {
       _loadingInProgress = false;
     });
+   Navigator.pushReplacementNamed(context, '/home');
   }
 
 @override

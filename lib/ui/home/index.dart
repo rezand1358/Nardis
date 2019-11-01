@@ -33,6 +33,7 @@ import 'package:nardis/models/viewmodels/product_summary_vm.dart';
 import 'package:nardis/repository/order/order_repository.dart';
 import 'package:nardis/repository/product/center_repository.dart';
 import 'package:nardis/translation_strings.dart';
+import 'package:nardis/ui/dialog/mydialog.dart';
 import 'package:nardis/ui/hiddendrawer/hidden_drawer/hidden_drawer_menu.dart';
 import 'package:nardis/ui/hiddendrawer/hidden_drawer/screen_hidden_drawer.dart';
 import 'package:nardis/ui/hiddendrawer/menu/item_hidden_menu.dart';
@@ -108,7 +109,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin ,
   String message='';
   Customer customer;
   bool isLoginned=true;
-  
+  bool isAdmin;
   int _counter=0;
   double _amountOrders=0;
 
@@ -428,7 +429,7 @@ void initLists()
 {
   categorys=repository.getListOfCategory();
   catItems=categorys.map((item) =>
-    new CategoryItem(item.name, '',item.code,item.name,SoapOpersConstants.CATEGORY)).toList();
+    new CategoryItem(item.name, item.imageAdd,item.code,item.name,SoapOpersConstants.CATEGORY)).toList();
 
    offers=repository.getMapOfProductsInCategory()[SoapOpersConstants.OFFERS]; 
    offerItems=offers.map((item) => 
@@ -438,12 +439,12 @@ void initLists()
    name: item.name,
    priceB: item.priceB,
    priceC: item.priceC,
-   imageUrl: SoapConstants.URL_IMAGE+item.code+'.jpg')).toList();
+   imageAdd: item.imageAdd/*SoapConstants.URL_IMAGE+item.code+'.jpg'*/)).toList();
 
   brands=repository.getListOfBrandCategory();
   brandItems=brands.map((item) =>
     new CategoryItem(item.name,
-  SoapConstants.URL_IMAGE+item.code+'.jpg',
+  item.imageAdd/*SoapConstants.URL_IMAGE+item.code+'.jpg'*/,
   item.code,item.name,SoapOpersConstants.BRANDGROUPS)).toList();
 
 
@@ -542,11 +543,26 @@ initCustomer() async
     customer=new Customer();
     customer.code=user.code;
     customer.mobile=user.mobile;
-    isLoginned=true;  
+    isLoginned=true;
+    if(user.admin==1) {
+
+      isAdmin = true;
+    }
+    else
+      {
+        isAdmin=false;
+      }
+    setState(() {
+
+    });
   }
   else{
     isLoginned=false;
+    isAdmin=false;
+
   }
+  //for test
+ // isAdmin=true;
 }
 void registerBus() {
     RxBus.register<ChangeEvent>().listen((ChangeEvent event)  {
@@ -575,12 +591,12 @@ void registerBus() {
   
   @override
   void initState() {
-    super.initState();
+
 
     initCustomer();   
    // registerBus();
     initLists();
-    
+    super.initState();
   }
 
   @override
@@ -599,7 +615,26 @@ void registerBus() {
   }
 
 
-
+ Future<bool> _onWillPop(BuildContext ctx) {
+    return showDialog(
+      context: ctx,
+      child: new AlertDialog(
+        title: new Text('آیا از خروج مطمئن هستید؟'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: new Text('خیر'),
+          ),
+          new FlatButton(
+            onPressed: () =>
+                SystemNavigator.pop(),
+            child: new Text('بله'),
+          ),
+        ],
+      ),
+    ) ??
+        false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -615,7 +650,7 @@ void registerBus() {
         return
           new WillPopScope(
         onWillPop: () async {
-          return true;
+         return _onWillPop(context);
         },
         child:
         
@@ -658,7 +693,7 @@ void registerBus() {
                  
            IconButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/shoppingcart');
+                    Navigator.pushNamed(context, '/shoppingcart');
                   },
                   icon: 
                   //Icon(Icons.shopping_cart, color: Colors.white, size: 32,semanticLabel: "Cart",),
@@ -710,7 +745,8 @@ void registerBus() {
                 )
                   
                // },)
-                )
+                ),
+                addProductIcon()
               ],
           //    backgroundColorContent: Colors.blue,
           //    backgroundColorAppBar: Colors.blue,
@@ -736,6 +772,28 @@ void registerBus() {
         );
   }
 
+ Widget addProductIcon()
+  {
+    return
+    isAdmin ?
+    Padding(
+      padding: EdgeInsets.only(left: 10.0),
+      child:
+
+      IconButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/addproduct');
+        },
+        icon:
+        //Icon(Icons.shopping_cart, color: Colors.white, size: 32,semanticLabel: "Cart",),
+        new Stack(
+          children: <Widget>[
+            new Icon(Icons.add_circle_outline, color: Colors.white, size: 32,semanticLabel: "Product",),
+          ],
+        ),),
+      // },)
+    ) : new Text('') ;
+  }
 loaduser() async
 {
     return await databaseHelper.getUserInfo() ; 

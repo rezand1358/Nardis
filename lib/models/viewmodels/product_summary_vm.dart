@@ -6,8 +6,8 @@
   String allt; 
   String priceC;
   String priceB;
-
-  ProductSummary({this.name,this.code,this.allt,this.priceB,this.priceC,this.description});
+  String imageAdd;
+  ProductSummary({this.name,this.code,this.allt,this.priceB,this.priceC,this.description,this.imageAdd});
 
 
   ProductSummary.map(dynamic obj)
@@ -19,7 +19,7 @@
     this.priceC=obj["PriceC"];
     this.description=obj["Description"];
     this.allt=obj["Allt"];
-
+    this.imageAdd=obj["ImageAdd"];
   }
 
 
@@ -31,7 +31,7 @@
     map["PriceC"]=this.priceC;
     map["Description"]=this.description;
     map["Allt"]=this.allt;
-   
+    map["ImageAdd"]=this.imageAdd;
    return map;
 
   }
@@ -43,7 +43,8 @@
       priceB: json['PriceB'],
       priceC: json['PriceC'],
       description: json['Description'],
-      allt: json['Allt']
+      allt: json['Allt'],
+        imageAdd: json["ImageAdd"],
     );
 
   }
@@ -55,6 +56,7 @@ Map<String, dynamic> toJson() => {
   'PriceC': this.priceC,
   'Allt': this.allt,
   'Description':this.description,
+  "ImageAdd" : this.imageAdd
 };
 
   String get p_name => name;
@@ -63,5 +65,5 @@ Map<String, dynamic> toJson() => {
   String get p_pricec => priceC;
   String get p_allt => allt;
   String get p_description => description;
-
+  String get P_imageadd =>imageAdd;
 }

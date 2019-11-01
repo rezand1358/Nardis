@@ -99,7 +99,6 @@ http.Response response = await http.post(
         case SoapTypes.BRANDS:
         break;
         case SoapTypes.OFFERS:
-           
           break;
         case SoapTypes.MESSAGE:
           break;
@@ -116,9 +115,18 @@ http.Response response = await http.post(
         case SoapTypes.APPVERSIOn:
           break;
         case SoapTypes.CUSTOMERLOGIN:
-      
           break;
-      }
+          case SoapTypes.GETLASTOBJECTCODE:
+            break;
+          case SoapTypes.SAVENEWOBJECT:
+            break;
+          case SoapTypes.SAVEIMAGE:
+            break;
+          case SoapTypes.ADMINCATEGORY:
+            break;
+          case SoapTypes.ADMINBRANDS:
+            break;
+        }
 
     List<dynamic> result=await runSoap(method);
     if(result!=null &&
@@ -129,7 +137,7 @@ http.Response response = await http.post(
     else{
       doActions(result);
     }
-     return runSoap(method);
+     return result;
     
   }
 

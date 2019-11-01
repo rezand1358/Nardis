@@ -109,6 +109,11 @@ Animation<Offset> pulseAnimation;
 
   }
 
+  _onBackPressed()
+  {
+    Navigator.of(context).pop(true);
+  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -126,6 +131,9 @@ Animation<Offset> pulseAnimation;
           style: new TextStyle(color: Colors.white,fontSize: 18.0),)
         ),
         body:
+   new WillPopScope(
+    onWillPop: () async =>_onBackPressed(),
+    child:
          StreamBuilder(
             stream: BlocProvider.of<GlobalBloc>(context).shoppingCartBloc.cartStream,
             builder: (context, snapshot) {
@@ -184,7 +192,7 @@ Animation<Offset> pulseAnimation;
                               child: ListTile(
                                 leading: Text(Translations.current.totalsum(),
                                     style: Theme.of(context).textTheme.subhead),
-                                trailing: Text(cart.priceNet.toString() + " IRR ",
+                                trailing: Text(cart.priceNet.toString() + " ریال ",
                                     style:
                                         Theme.of(context).textTheme.headline),
                               ),
@@ -213,6 +221,7 @@ Animation<Offset> pulseAnimation;
 
            // ),
         }),
+    ),
             );
   }
 

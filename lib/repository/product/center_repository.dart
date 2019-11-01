@@ -18,11 +18,21 @@ class CenterRepository {
 
   CenterRepository._internal();
 
-  String topMessage='بدون متن';
+  String topMessage='';
    List<ProductCategoryModel> categoryList=new List();
    List<ProductCategoryModel> brandCategoryList=new List();
+
+   //for admin
+  List<ProductCategoryModel> adminCategoryList=new List();
+  List<ProductCategoryModel> adminBrandCategoryList=new List();
+
    HashMap<String,List<ProductSummary>> mapOfProductsInCategory=new HashMap();
    HashMap<String,List<ProductCategoryModel>> mapOfGroupsInCategory=new HashMap();
+  HashMap<String,List<ProductCategoryModel>> mapOfAdminGroupsInCategory=new HashMap();
+
+  HashMap<String,List<ProductCategoryModel>> mapOfSubBrandsInBrands=new HashMap();
+  HashMap<String,List<ProductCategoryModel>> mapOfSubAdminBrandsInBrands=new HashMap();
+
    HashMap<String,List<ProductSummary>> mapOfProductOffers=new HashMap();
    HashMap<String,List<ProductSummary>> mapOfSubProducts=new HashMap();
    HashMap<String,List<ProductSummary>> mapOfSearchProducts=new HashMap();
@@ -100,12 +110,30 @@ setSearchProducts(List<ProductSummary> products,String key)
   {
     return this.mapOfGroupsInCategory;
   }
-
+  Map<String,List<ProductCategoryModel>> getMapOfAdminGroupsInCategory()
+  {
+    return this.mapOfAdminGroupsInCategory;
+  }
+  Map<String,List<ProductCategoryModel>> getMapOfSubBrandsInBrands()
+  {
+    return this.mapOfSubBrandsInBrands;
+  }
+  Map<String,List<ProductCategoryModel>> getMapOfSubAdminBrandsInBrands()
+  {
+    return this.mapOfSubAdminBrandsInBrands;
+  }
   setMapOfProductsInCategory(HashMap<String,List<ProductSummary>> mapOfProductsInCategory)
   {
     this.mapOfProductsInCategory=mapOfProductsInCategory;
   }
-
+  List<ProductCategoryModel> getListOfAdminCategory()
+  {
+    if(adminCategoryList==null)
+    {
+      adminCategoryList=new List();
+    }
+    return this.adminCategoryList;
+  }
  List<ProductCategoryModel> getListOfCategory()
   {
     if(categoryList==null)
@@ -123,15 +151,30 @@ setSearchProducts(List<ProductSummary> products,String key)
      }
     return this.brandCategoryList;
   }
+  List<ProductCategoryModel> getListOfAdminBrandCategory()
+  {
+    if(adminBrandCategoryList==null)
+    {
+      adminBrandCategoryList=new List();
+    }
+    return this.adminBrandCategoryList;
+  }
   setListOfCategory(List<ProductCategoryModel> categoryList)
   {
     this.categoryList=categoryList;
+  }
+  setListOfAdminCategory(List<ProductCategoryModel> categoryList)
+  {
+    this.adminCategoryList=categoryList;
   }
   setListOfBrandCategory(List<ProductCategoryModel> categoryList)
   {
     this.brandCategoryList=categoryList;
   }
-
+  setListOfAdminBrandCategory(List<ProductCategoryModel> categoryList)
+  {
+    this.adminBrandCategoryList=categoryList;
+  }
 
 }
 

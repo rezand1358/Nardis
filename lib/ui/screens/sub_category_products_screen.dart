@@ -28,9 +28,9 @@ SubCategoryProductsScreen({@required this.item})
   cat_name=item.catname;
   cat_key=item.cattype;
   productList=repository.getMapOfGroupsInCategory()[cat_name];
-  
+
   catItems=productList.map((item) =>
-    new CategoryItem(item.name, '',item.code,this.cat_name,this.cat_key)).toList();
+    new CategoryItem(item.name, item.imageAdd,item.code,this.cat_name,this.cat_key)).toList();
 
 }
 
@@ -49,14 +49,14 @@ class _SubCategoryProductsState extends State<SubCategoryProductsScreen>
 
 void registerBus() {
     RxBus.register<ChangeEvent>().listen((ChangeEvent event)  {
-      
+
       if( event.message=='SUBPRODUCTS_LOADED')
       {
 
       }
         // loadProductsList();
-      setState(()  => { 
-    
+      setState(()  => {
+
     });
     });
   }
@@ -67,26 +67,35 @@ void registerBus() {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    return
+      new WillPopScope(
+        onWillPop: () async {
+      return Navigator.pushReplacementNamed(context, "/home");
+    },
+    child:
+      Scaffold(
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
            icon:Icon( Icons.arrow_forward_ios),
-          onPressed: ()=> 
+          onPressed: ()=>
               Navigator.popAndPushNamed(context, '/home')
           ,)
         ],
         title: Text(Translations.current.productslist()),
       ),
       body: _buildList(context)
+      ),
     );
   }
-  
+
 
 
 ListView _buildList(BuildContext context) {
-   
-    return new ListView.builder(
+
+    return new
+    ListView.builder(
       physics: BouncingScrollPhysics(),
       itemCount: widget.catItems.length,
       itemBuilder: (context, index) {

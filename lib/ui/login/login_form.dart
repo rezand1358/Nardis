@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nardis/authentication/authentication.dart';
 import 'package:nardis/bloc/login/login.dart';
+import 'package:nardis/components/myprogress_dialog.dart';
 import 'package:nardis/constants/constants.dart';
 import 'package:nardis/data/soap_constants.dart';
 import 'package:nardis/data/soaps/soap_customer.dart';
@@ -42,16 +43,20 @@ class _LoginFormState extends State<LoginForm>
 
   int index=1;
   String mobile='';
-
+  bool isLoginDisabled;
+  MyProgressDialog myProgressDialog;
   @override
   void initState() {
     
     super.initState();
+    isLoginDisabled=false;
     formAnimationController = new AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 3000),
     );
-
+    myProgressDialog=new MyProgressDialog(context: context,
+        message: 'در حال ورود به برنامه',
+        showPercentage: true);
 double start = index * 0.1;
 double duration = 0.6;
 double end = duration + start;
@@ -116,7 +121,13 @@ _buildLogin() {
                       child:
                       RaisedButton(
                         onPressed: (){
-                         new SoapCustomer(context: context).call(SoapConstants.METHOD_NAME_CUSTOMER_LOGIN, 'MobileNo', mobile);
+
+                          isLoginDisabled ? null : new SoapCustomer(context: context).call(
+                                SoapConstants.METHOD_NAME_CUSTOMER_LOGIN,
+                                'MobileNo', mobile);
+                            myProgressDialog.showProgressDialog();
+
+                            isLoginDisabled=true;
                         },
                         elevation: 0,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
@@ -157,6 +168,7 @@ _buildExit() {
                         child:
                         RaisedButton(
                           onPressed: (){
+
                             SystemNavigator.pop();
                           },
                           elevation: 0,
@@ -242,7 +254,6 @@ _buildExit() {
                     ),
                     child: 
                     TextField(
-
                       textAlign: TextAlign.start ,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 4.0,bottom: 0.0,),
@@ -254,7 +265,6 @@ _buildExit() {
                         hintText: Translations.of(context).password(),
                       ),
                     ),
-                    
                   ),
     );
   }
@@ -271,6 +281,26 @@ _buildExit() {
         BuildContext context,
         LoginState state,
       ) {
+
+       if(state is LoginInitial) {
+         isLoginDisabled=false;
+
+       }
+       else if(state is LoginLoading)
+         {
+           isLoginDisabled=true;
+           myProgressDialog.updateProgress('ادامه ورود به برنامه', 50.0);
+         }
+       else if(state is LoginFailure)
+         {
+           isLoginDisabled=false;
+           myProgressDialog.hideProgressDialog();
+         }
+       else if(state is LoggedIn)
+         {
+           isLoginDisabled=false;
+           myProgressDialog.hideProgressDialog();
+         }
         return
       Container(
         child: /*Column(

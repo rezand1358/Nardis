@@ -16,7 +16,7 @@ import 'package:nardis/models/viewmodels/product_summary_vm.dart';
 
 class SoapSubCategory extends SoapCall{
   SoapCall soapCall;
-  BuildContext context; 
+  BuildContext context;
   SoapOpers soapOpers;
   String productCode='';
   SoapSubCategory({this.context,this.productCode})
@@ -55,11 +55,11 @@ List<dynamic> result=await applySoap(method,SoapTypes.SUBCATEGORY);
   // }
   // else{
   //   RxBus.post(ChangeEvent(message: 'SUBPRODUTCS_LOADED'));
-  
+
   // }
 }
 
- 
+
 
   @override
   void doActions(List result) {
@@ -69,8 +69,8 @@ List<dynamic> result=await applySoap(method,SoapTypes.SUBCATEGORY);
   soapOpers.doAction( jsonResult);
   }
   else{
-    RxBus.post(ChangeEvent(message: 'SUBPRODUTCS_LOADED'));
-  
+    RxBus.post(ChangeEvent(message: 'SUBPRODUCTS_LOADED'));
+
   }
   }
 }

@@ -49,7 +49,7 @@ class ProductListItemState extends State<ProductListItem>
 
 
   Widget productImage(){
-    return CircleImage(height: 100.0,width: 100.0,imageUrl: SoapConstants.URL_IMAGE+ widget.item.code+'.jpg',radius: 50.0,);
+    return CircleImage(height: 100.0,width: 100.0,imageUrl: widget.item.imageAdd/*SoapConstants.URL_IMAGE+ widget.item.code+'.jpg'*/,radius: 50.0,);
   }
 
   Widget itemImage() {
@@ -62,7 +62,7 @@ class ProductListItemState extends State<ProductListItem>
           shape: BoxShape.circle,
           image: new DecorationImage(
             fit: BoxFit.fill,
-            image: new NetworkImage(SoapConstants.URL_IMAGE+ widget.item.code+".jpg"),
+            image: new NetworkImage(widget.item.imageAdd/*SoapConstants.URL_IMAGE+ widget.item.code+".jpg"*/),
           ),
         ),
       ),
@@ -145,7 +145,7 @@ class ProductListItemState extends State<ProductListItem>
                               )
                           ),
 
-                          new Text(widget.item.code,
+                          new Text('',
                               style: new TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12.0,

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-07-22T11:10:43.100753",
+  "@@last_modified": "2019-10-09T15:56:59.450424",
   "userName": "نام کاربری",
   "@userName": {
     "description": "نام کاربری",
@@ -351,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "productUnitPrice": "قیمت واحد",
+  "@productUnitPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
   "countincart": "تعداد در سبد",
   "@countincart": {
     "type": "text",
@@ -383,6 +388,56 @@
   },
   "plzlogin": "لطفا وارد شوید!",
   "@plzlogin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "plzEnterCode": "لطفا کد را وارد نمایید",
+  "@plzEnterCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "description": "توضیحات",
+  "@description": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "plzEnterName": "لطفا نام را وارد نمایید",
+  "@plzEnterName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productName": "نام محصول",
+  "@productName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productPic": "تصویر محصول",
+  "@productPic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notYetPickVideo": "هنوز ویدیویی انتخاب نکرده اید!",
+  "@notYetPickVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorLoadingVideo": "خطا در بارگذاری ویدیو",
+  "@errorLoadingVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImageError": "خطا در بارگذاری تصویر",
+  "@pickImageError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notYetPickImage": "هنوز تصویری انتخاب نکرده اید!",
+  "@notYetPickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorPickImageVideo": "خطا در دریافت فایل ویدیویی",
+  "@errorPickImageVideo": {
     "type": "text",
     "placeholders": {}
   },

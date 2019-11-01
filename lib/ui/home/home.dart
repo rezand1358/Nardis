@@ -132,7 +132,7 @@ Container buildOffersRow( List<Map> products) {
         return  GestureDetector(
           onTap: () {
             ProductSummary productSummary=new ProductSummary.map(products[index]);
-            Navigator.pushReplacementNamed(context, '/productdetails',arguments: new ProductDetailsVM(productSummary: productSummary ,position: index)) ;
+            Navigator.pushNamed(context, '/productdetails',arguments: new ProductDetailsVM(productSummary: productSummary ,position: index)) ;
           } ,  
           child:
          Container(
@@ -158,7 +158,7 @@ Container buildOffersRow( List<Map> products) {
       child:
       new Container(
         margin: EdgeInsets.all(2.0),
-        child: new CircleImage(width: 90.0,height: 90.0,imageUrl: products[index]['ImageUrl'],)
+        child: new CircleImage(width: 90.0,height: 90.0,imageUrl: products[index]['ImageAdd'],)
       // CircleAvatar(
       //   radius: 85.0,
       //   child:

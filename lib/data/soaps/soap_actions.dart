@@ -48,6 +48,10 @@ class SoapOpers<T> {
 
     }
     else {
+      if(this.oper==SoapOpersConstants.OPERS_LAST_OBJECT_CODE_ACTIONS)
+        {
+          loadObjectCode(data);
+        }
     if(this.oper==SoapOpersConstants.OPERS_CUSTOMERLOGIN)
     {
       customerLogin(data);
@@ -56,13 +60,18 @@ class SoapOpers<T> {
     {
       loadCategory(data);
     }
-     if(this.oper==SoapOpersConstants.OPERS_SPECIALOFFERS)
+      if(this.oper==SoapOpersConstants.OPERS_ADMINCATEGORY)
+      {
+        loadAdminCategory(data);
+      }
+
+      if(this.oper==SoapOpersConstants.OPERS_SPECIALOFFERS)
     {
       loadOffers(data);
     }
      if(this.oper==SoapOpersConstants.OPERS_APPVERSION)
     {
-      _checkVersion(data);    
+      _checkVersion(data);
     }
      if(this.oper==SoapOpersConstants.OPERS_SEARCH)
     {
@@ -72,6 +81,10 @@ class SoapOpers<T> {
     {
       loadBrandGroups(data);
     }
+      if(this.oper==SoapOpersConstants.OPERS_ADMINBRANDGROUPS)
+      {
+        loadAdminBrandGroups(data);
+      }
      if(this.oper==SoapOpersConstants.OPERS_MESSAGE)
     {
       loadMessage(data);
@@ -92,6 +105,10 @@ class SoapOpers<T> {
     {
       Navigator.pushReplacementNamed(context, '/home');
     }
+    if(this.oper==SoapOpersConstants.OPERS_SAVENEWOBJECT)
+      {
+        RxBus.post(ChangeEvent(message: 'OBJECT_SAVED'));
+      }
   }
 }
   Future _checkVersion(List<dynamic> data) async
@@ -104,15 +121,15 @@ class SoapOpers<T> {
         {
           PackageInfo packageInfo = await PackageInfo.fromPlatform();
           String versionName = packageInfo.version;
-          String versionName2 = versionName.substring(0,2);
+          String versionName2 = versionName.substring(0,3);
           if(num.tryParse(versionName2)?.toDouble()==verNum) {
             RxBus.post(ChangeEvent(message: "APP_VERSION_CHECKED_VALID"));
           }
           else
-            RxBus.post(ChangeEvent(message: "APP_VERSION_CHECKED_NOT_VALID"));
+            RxBus.post(ChangeEvent(message: "APP_VERSION_CHECKED_NOTVALID"));
         }
         else{
-          RxBus.post(ChangeEvent(message: "APP_VERSION_CHECKED_NOT_VALID"));
+          RxBus.post(ChangeEvent(message: "APP_VERSION_CHECKED_NOTVALID"));
         }
       }
 }
@@ -133,6 +150,8 @@ Future loadSearch(List<dynamic> data) async
     }
   //searchBloc.dispatch(new LoadedSearchEvent());
 }
+
+
 Future loadCategory(List<dynamic> data) async
 {
   List<ProductCategoryModel> categories=new List();
@@ -160,28 +179,58 @@ Future loadCategory(List<dynamic> data) async
 
 }
 
+  Future loadAdminCategory(List<dynamic> data) async
+  {
+    List<ProductCategoryModel> categories=new List();
+    categories=data.map((p) =>
+        ProductCategoryModel.fromJson(p)).toList();
+    List<ProductCategoryModel> catfiltered=new List();
+    catfiltered=categories.where((c) => c.parent_id=='0').toList();
+    repository.setListOfAdminCategory(catfiltered);
 
+
+    //get Sub Category
+    List<ProductCategoryModel> subCatfiltered=new List();
+    for(ProductCategoryModel pc in catfiltered)
+    {
+      subCatfiltered=categories.where((c) => c.parent_id==pc.code).toList();
+      if(subCatfiltered!=null &&
+          subCatfiltered.length>0)
+      {
+        repository.getMapOfAdminGroupsInCategory().putIfAbsent(pc.name, () => subCatfiltered );
+      }
+    }
+    //Navigator.pushReplacementNamed(context, '/home');
+//    server.simulateMessage("CATEGORY_LOADED");
+    RxBus.post(ChangeEvent(message: "ADMINCATEGORY_LOADED"));
+
+  }
 Future loadSubProducts(List<dynamic> data) async
 {
   List<ProductSummary> products=new List();
       products=data.map((p) =>
         ProductSummary.fromJson(p)).toList();
-     
+
      repository.setSubProducts(products, this.productCode);
 
-     loadProductsList(this.productCode);
+
+
+     loadProductsList(catName: this.productCode,imageAdd: '',title: '');
     //RxBus.post(ChangeEvent(message: "SUBPRODUCTS_LOADED"));
 
 }
 
+loadObjectCode(List<dynamic> code)
+{
 
-loadProductsList(String catName)
+}
+loadProductsList({String catName,String imageAdd,String title})
 {
  List<ProductSummary> products=repository.getMapOfProductsInCategory()[catName];
-ProductListVM productListVM=new ProductListVM(catItem: new CategoryItem('', '', productCode, catName, SoapOpersConstants.SUBCATEGORY),isFromCart: false,products:products );  
+ProductListVM productListVM=new ProductListVM(catItem: new CategoryItem(title, imageAdd, productCode, catName, SoapOpersConstants.SUBCATEGORY),isFromCart: false,products:products );
 
- Navigator.pushReplacementNamed(context, '/productslist',arguments: productListVM); 
-  
+ Navigator.pushNamed(context, '/productslist',arguments: productListVM);
+
 }
 Future loadBrandGroups(List<dynamic> data) async
 {
@@ -201,16 +250,44 @@ Future loadBrandGroups(List<dynamic> data) async
         subCatfiltered.length>0)
         {
           repository.getMapOfGroupsInCategory().putIfAbsent(pc.name, () => subCatfiltered );
+          repository.getMapOfSubBrandsInBrands().putIfAbsent(pc.name, ()=> subCatfiltered);
+
         }
       }
 
     RxBus.post(ChangeEvent(message:"BRAND_LOADED"));
 
 }
+  Future loadAdminBrandGroups(List<dynamic> data) async
+  {
+    List<ProductCategoryModel> categories=new List();
+    categories=data.map((p) =>
+        ProductCategoryModel.fromJson(p)).toList();
+    List<ProductCategoryModel> catfiltered=new List();
+    catfiltered= categories.where((c) => c.parent_id=='0').toList();
+    repository.setListOfAdminBrandCategory(catfiltered);
+
+//get Sub Category
+    List<ProductCategoryModel> subCatfiltered=new List();
+    for(ProductCategoryModel pc in catfiltered)
+    {
+      subCatfiltered=categories.where((c) => c.parent_id==pc.code).toList();
+      if(subCatfiltered!=null &&
+          subCatfiltered.length>0)
+      {
+        repository.getMapOfAdminGroupsInCategory().putIfAbsent(pc.name, () => subCatfiltered );
+        repository.getMapOfSubAdminBrandsInBrands().putIfAbsent(pc.name, ()=> subCatfiltered);
+
+      }
+    }
+
+    RxBus.post(ChangeEvent(message:"ADMINBRAND_LOADED"));
+
+  }
 Future loadOffers(List<dynamic> jsonResult) async
 {
   List<ProductSummary> offerItems=new List();
-  offerItems=jsonResult.map((o) => 
+  offerItems=jsonResult.map((o) =>
   ProductSummary.fromJson(o) ).toList();
   repository.setProductOffers(offerItems, SoapOpersConstants.OFFERS);
     //server.simulateMessage("OFFERS_LOADED");
@@ -220,8 +297,7 @@ Future loadOffers(List<dynamic> jsonResult) async
 
 Future loadMessage(List<dynamic> jsonResult) async
 {
-  String message=jsonResult.map((data) =>
-   data).toString();
+  String message=jsonResult[0].toString();
    repository.topMessage=message;
 
    RxBus.post(ChangeEvent(message: "MESSAGE_LOADED"));
@@ -240,14 +316,14 @@ _saveOrder(List<dynamic> jsonResult)
     RxBus.post(ChangeEvent(message: "ORDER_SAVED"));
   else
     RxBus.post(ChangeEvent(message: "ORDER_SAVED_ERROR"));
-    
+
 
 }
   customerLogin(List<dynamic> jsonResult)
   {
 
 List<Customer> customer=new List<Customer>();
-    customer=jsonResult.map((data) => 
+    customer=jsonResult.map((data) =>
        Customer.fromJson(data)).toList();
 
        if(customer!=null &&
@@ -277,7 +353,7 @@ customerRegister(List<dynamic> jsonResult)
   {
 
 List<Customer> customer=new List<Customer>();
-    customer=jsonResult.map((data) => 
+    customer=jsonResult.map((data) =>
        Customer.fromJson(data)).toList();
 
        if(customer!=null &&

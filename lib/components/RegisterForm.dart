@@ -42,7 +42,7 @@ class _RegisterContainerState extends State<RegisterContainer> with TickerProvid
 
   int index=1;
   Customer user;
-
+  bool isRegisterBtnDisabled=false;
   _lastNameChanged(value)
   {
     user.lastName=value;
@@ -498,10 +498,12 @@ _buildRegister() {
                     Center(
                       child:
                       RaisedButton(
-                        onPressed: (){
+                        onPressed: () {
                           // ApiCustomer apiCustomer=new ApiCustomer();
                           // apiCustomer=ApiCustomer.map(user);
-                          BlocProvider.of<RegisterBloc>(context).dispatch(new LoadRegisterEvent(user,context));
+                         if(!isRegisterBtnDisabled)   BlocProvider.of<RegisterBloc>(context).dispatch(new LoadRegisterEvent(user,context));
+                            isRegisterBtnDisabled=true;
+
                             //new SoapSaveCustomer(context: context).call(SoapConstants.METHOD_SAVE_CUSTOMER,  jsonEncode(apiCustomer));
                         },
                         elevation: 0,
@@ -630,7 +632,7 @@ formAnimations=[new Tween<double>(begin: 800.0, end: 0.0).animate(
                return
                 new Container(
                       margin: EdgeInsets.only(top: 25.0),
-                      height: h/2.5,
+                      height: h/2.2,
                       child:
                new ListView(
                         
@@ -650,7 +652,7 @@ formAnimations=[new Tween<double>(begin: 800.0, end: 0.0).animate(
                                               _buildFirstName()  ,
                                               _buildLastName(),
                                               _buildMobile(),
-                                              _buildAddress(),
+                                             // _buildAddress(),
                 new Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -676,10 +678,12 @@ formAnimations=[new Tween<double>(begin: 800.0, end: 0.0).animate(
         }
         if(currentState is RegisteredState)
         {
+            isRegisterBtnDisabled=false;
             Navigator.pushReplacementNamed(context, '/home');
         }
         if(currentState is ErrorRegisterState)
         {
+          isRegisterBtnDisabled=false;
           return new Container(
               child: new Center(
               child: new Text(currentState.errorMessage ?? 'Error' ),

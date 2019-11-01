@@ -7,8 +7,8 @@
   String allt; 
   String priceC;
   String priceB;
-
-  Product({this.name,this.code,this.allt,this.priceB,this.priceC,this.description});
+  String imageAdd;
+  Product({this.name,this.code,this.allt,this.priceB,this.priceC,this.description,this.imageAdd});
 
 
   Product.map(Map<String, dynamic> obj)
@@ -20,6 +20,7 @@
     this.priceC=obj["PriceC"];
     this.description=obj["Description"];
     this.allt=obj["Allt"];
+    this.imageAdd=obj["ImageAdd"];
 
   }
 
@@ -32,6 +33,7 @@
     map["PriceC"]=this.priceC;
     map["Description"]=this.description;
     map["Allt"]=this.allt;
+    map["ImageAdd"]=this.imageAdd;
    
    return map;
 
@@ -40,23 +42,25 @@
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return new Product(
-      name: json['Name'],
-      code: json['Code'],
-      priceB: json['PriceB'],
-      priceC: json['PriceC'],
-      description: json['Description'],
-      allt: json['AllT']
+      name: json["Name"],
+      code: json["Code"],
+      priceB: json["PriceB"],
+      priceC: json["PriceC"],
+      description: json["Description"],
+      allt: json["AllT"],
+      imageAdd: json["ImageAdd"]
     );
 
   }
 
 Map<String, dynamic> toJson() => {
- 'Name': this.name,
- 'Code': this.code,
-  'PriceB': this.priceB,
-  'PriceC': this.priceC,
-  'AllT': this.allt,
-  'Description':this.description,
+ "Name": this.name,
+ "Code": this.code,
+  "PriceB": this.priceB,
+  "PriceC": this.priceC,
+  "AllT": this.allt,
+  "Description":this.description,
+  "ImageAdd" : this.imageAdd
 };
 
   String get p_name => name;
@@ -65,6 +69,6 @@ Map<String, dynamic> toJson() => {
   String get p_pricec => priceC;
   String get p_allt => allt;
   String get p_description => description;
-
+  String get P_imageadd =>imageAdd;
 
 }

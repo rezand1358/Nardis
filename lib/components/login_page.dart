@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nardis/authentication/authentication.dart';
 import 'package:nardis/bloc/login/login.dart';
+import 'package:nardis/bloc/register/register.dart';
 import 'package:nardis/repository/user/user_repository.dart';
 import 'package:nardis/ui/login/login_form.dart';
 
@@ -29,7 +30,6 @@ class _LoginPageState extends State<LoginPage> {
  
   LoginBloc _loginBloc;
   AuthenticationBloc _authenticationBloc;
-
   UserRepository get _userRepository => widget.userRepository;
 
   @override
@@ -48,6 +48,8 @@ class _LoginPageState extends State<LoginPage> {
       userRepository: _userRepository,
       authenticationBloc: _authenticationBloc,
     );
+
+
 
     super.initState();
   }

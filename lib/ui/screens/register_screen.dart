@@ -27,7 +27,12 @@ class _RegisterState extends State<RegisterScreen>
   @override
   Widget build(BuildContext context) {
     
-    return  Scaffold(
+    return new WillPopScope(
+        onWillPop: () async {
+      return Navigator.pushReplacementNamed(context, "/home");
+    },
+    child:
+      Scaffold(
       appBar: AppBar(
         actions: <Widget>[
           new IconButton(
@@ -54,6 +59,7 @@ class _RegisterState extends State<RegisterScreen>
       )
     ),
         ),
+      ),
     );
   }
 

@@ -82,12 +82,12 @@ class LoginScreenState extends State<LoginScreen>
             actions: <Widget>[
               new FlatButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('No'),
+                child: new Text('خیر'),
               ),
               new FlatButton(
                 onPressed: () =>
                     Navigator.pushReplacementNamed(context, "/home"),
-                child: new Text('Yes'),
+                child: new Text('بله'),
               ),
             ],
           ),

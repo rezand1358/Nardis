@@ -8,6 +8,7 @@ import 'package:nardis/bloc/basic/bloc_provider.dart' as gbloc;
 import 'package:nardis/bloc/basic/global_bloc.dart';
 import 'package:nardis/bloc/search/index.dart';
 import 'package:nardis/bloc/search/search_screen.dart';
+import 'package:nardis/components/UploadImage.dart';
 import 'package:nardis/components/loading_indicator.dart';
 import 'package:nardis/components/login_page.dart';
 import 'package:nardis/data/rxbus.dart';
@@ -19,12 +20,14 @@ import 'package:nardis/data/soaps/soap_opers_constant.dart';
 import 'package:nardis/data/soaps/special_offers.dart';
 import 'package:nardis/models/app_state.dart';
 import 'package:nardis/models/change_event.dart';
+import 'package:nardis/models/viewmodels/upload_model.dart';
 import 'package:nardis/repository/user/user_repository.dart';
 import 'package:nardis/translation_strings.dart';
 import 'package:nardis/ui/product/product_details.dart';
 import 'package:nardis/ui/product/products_list.dart';
 import 'package:nardis/ui/profile/profile2.dart';
 import 'package:nardis/ui/screens/AnimatedSplashScreen.dart';
+import 'package:nardis/ui/screens/add_product_screen.dart';
 import 'package:nardis/ui/screens/loading_screen.dart';
 import 'package:nardis/ui/screens/register_screen.dart';
 import 'package:nardis/ui/screens/sub_category_products_screen.dart';
@@ -196,6 +199,16 @@ Future buildLoading() {
                case '/search':
               return new MyCustomRoute(
                 builder: (_) => new SearchPage(),
+                settings: settings,
+              );
+            case '/addproduct':
+              return new MyCustomRoute(
+                builder: (_) => new AddProductScreen(),
+                settings: settings,
+              );
+            case '/uploadscreen':
+              return new MyCustomRoute(
+                builder: (_) => new UploadImage(model: settings.arguments),
                 settings: settings,
               );
           }

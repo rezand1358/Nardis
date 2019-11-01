@@ -60,8 +60,8 @@ Container _buildSectionHeader(BuildContext context) {
 
  
 
-Widget  productImage(String code) {
- return  CircleImage(width: 50.0,height: 50.0,imageUrl:SoapConstants.URL_IMAGE+code+'.jpg' ,radius: 50.0,);
+Widget  productImage(String imagUrl) {
+ return  CircleImage(width: 50.0,height: 50.0,imageUrl:imagUrl /*SoapConstants.URL_IMAGE+code+'.jpg'*/ ,radius: 50.0,);
 //     child: CachedNetworkImage(
 
 //     placeholder:(context, url) => new Container(
@@ -78,7 +78,7 @@ Widget  productImage(String code) {
 // ));
  
 }
-  Container _buildHeader(BuildContext context,String name,String description,String code) {
+  Container _buildHeader(BuildContext context,String name,String description,String code,String imageUrl) {
     return Container(
       margin: EdgeInsets.only(top: 50.0),
       height: 380.0,
@@ -107,7 +107,7 @@ Widget  productImage(String code) {
                       children: <Widget>[
                         Expanded(
                           child: ListTile(
-                            title: Text(code,
+                            title: Text('',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontWeight: FontWeight.bold,),),
                             subtitle: Text(Translations.of(context).age().toUpperCase(),
@@ -127,7 +127,7 @@ Widget  productImage(String code) {
                         ),
                         Expanded(
                           child: ListTile(
-                            title: Text(code,
+                            title: Text('',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontWeight: FontWeight.bold),),
                             subtitle: Text(Translations.of(context).age().toUpperCase(),
@@ -145,7 +145,7 @@ Widget  productImage(String code) {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-                  productImage(code),
+                  productImage(imageUrl),
             ],
           ),
         ],
@@ -153,9 +153,9 @@ Widget  productImage(String code) {
     );
   }
 
-createItemsContents(String name,String code,String description,BuildContext context)
+createItemsContents(String name,String code,String description,String imageUrl, BuildContext context)
 {
-  _buildHeader(context, name, description, code);
+  _buildHeader(context, name, description, code,imageUrl);
   _buildSectionHeader(context);
 }
 
@@ -174,7 +174,9 @@ void initState() {
   @override
   Widget build(BuildContext context) {
     ShoppingCartBloc _shopBloc=BlocProvider.of<GlobalBloc>(context).shoppingCartBloc;
-    return  Scaffold(
+
+    return
+      Scaffold(
       appBar: AppBar(
       actions: <Widget>[
           Builder(
@@ -200,6 +202,11 @@ void initState() {
       title: Text(Translations.current.productslist(),style: TextStyle(fontSize: 20.0,color: Colors.yellowAccent),),
     ),
       body:
+      new WillPopScope(
+        onWillPop: () async {
+          return Navigator.pushReplacementNamed(context, "/home");
+        },
+        child:
         new ListView.builder(
             padding: EdgeInsets.only(top: 6.0),
             
@@ -213,7 +220,8 @@ void initState() {
             // widget.item.products[index].code,
             // widget.item.products[index].description,
             // context),
-          )
+          ),
+      ),
     );
   }
   

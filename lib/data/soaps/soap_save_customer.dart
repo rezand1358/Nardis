@@ -59,6 +59,8 @@ resultTag= 'SaveCustomerResult';
           }
       }
       catch(error){
+        Scaffold.of(context).showSnackBar(new SnackBar(content: Text(result[0])));
+        BlocProvider.of<RegisterBloc>(context).dispatch(new InitRegisterEvent());
         Navigator.pushReplacementNamed(context, '/login');
       }
     //soapOpers.doAction(jsonResult);

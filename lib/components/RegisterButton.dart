@@ -6,11 +6,12 @@ class SendRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (new Container(
+      margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
       width: 320.0,
       height: 60.0,
       alignment: FractionalOffset.center,
       decoration: new BoxDecoration(
-        color: const Color(0xff0091ea),
+        color: Colors.redAccent,
         borderRadius: new BorderRadius.all(const Radius.circular(3.0)),
       ),
       child: new Text(

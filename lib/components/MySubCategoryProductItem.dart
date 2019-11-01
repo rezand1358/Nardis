@@ -46,12 +46,12 @@ class MySubCategoryProductItemState extends State<MySubCategoryProductItem>
 
   Widget itemImage2()
   {
-    renderUrl=SoapConstants.URL_IMAGE+ widget.item.code+'.jpg';
+    renderUrl=widget.item.image /*SoapConstants.URL_IMAGE+ widget.item.code+'.jpg'*/;
     return CircleImage(height: 100.0,width: 100.0,imageUrl: renderUrl,radius: 80.0,);
   }
 
   Widget itemImage() {
-    renderUrl=SoapConstants.URL_IMAGE+ widget.item.code+".jpg";
+    renderUrl=widget.item.image/*SoapConstants.URL_IMAGE+ widget.item.code+".jpg"*/;
     var itemAvatar = new Hero(
       tag: widget.item,
       child: new Container(
@@ -61,7 +61,7 @@ class MySubCategoryProductItemState extends State<MySubCategoryProductItem>
           shape: BoxShape.circle,
           image: new DecorationImage(
             fit: BoxFit.cover,
-            image: new NetworkImage(SoapConstants.URL_IMAGE+ widget.item.code+".jpg"),
+            image: new NetworkImage(widget.item.image/*SoapConstants.URL_IMAGE+ widget.item.code+".jpg"*/),
           ),
         ),
       ),
@@ -145,7 +145,7 @@ class MySubCategoryProductItemState extends State<MySubCategoryProductItem>
                               )
                           ),
 
-                          new Text(widget.item.code,
+                          new Text('',
                               style: new TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12.0,

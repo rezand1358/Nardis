@@ -8,8 +8,8 @@ class ProductOffers {
   String allt; 
   String priceC;
   String priceB;
-  String imageUrl;
-  ProductOffers({this.name,this.code,this.allt,this.priceB,this.priceC,this.description,this.imageUrl});
+  String imageAdd;
+  ProductOffers({this.name,this.code,this.allt,this.priceB,this.priceC,this.description,this.imageAdd});
 
 
   ProductOffers.map(dynamic obj)
@@ -21,7 +21,7 @@ class ProductOffers {
     this.priceC=obj["PriceC"];
     this.description=obj["Description"];
     this.allt=obj["Allt"];
-    this.imageUrl=obj["ImageUrl"];
+    this.imageAdd=obj["ImageAdd"];
 
   }
 
@@ -34,7 +34,7 @@ class ProductOffers {
     map["PriceC"]=this.priceC;
     map["Description"]=this.description;
     map["Allt"]=this.allt;
-    map["ImageUrl"]=this.imageUrl;
+    map["ImageAdd"]=this.imageAdd;
 
    
    return map;
@@ -49,7 +49,7 @@ class ProductOffers {
       priceC: json['PriceC'],
       description: json['Description'],
       allt: json['AllT'],
-      imageUrl: json['ImageUrl']
+        imageAdd: json['ImageAdd']
     );
 
   }
@@ -61,7 +61,7 @@ Map<String, dynamic> toJson() => {
   'PriceC': this.priceC,
   'AllT': this.allt,
   'Description':this.description,
-  'ImageUrl': this.imageUrl
+  'ImageAdd': this.imageAdd
 };
 
   String get p_name => name;
@@ -70,6 +70,6 @@ Map<String, dynamic> toJson() => {
   String get p_pricec => priceC;
   String get p_allt => allt;
   String get p_description => description;
-  String get image_Url => SoapConstants.URL_IMAGE+'.'+code;
+  String get image_Url => imageAdd;//SoapConstants.URL_IMAGE+'.'+code;
 
 }

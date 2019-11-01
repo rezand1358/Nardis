@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nardis/bloc/basic/bloc_provider.dart' as cart;
 import 'package:nardis/bloc/basic/global_bloc.dart';
 import 'package:nardis/bloc/register/register.dart';
+import 'package:nardis/components/do_download.dart';
 import 'package:nardis/data/rxbus.dart';
 import 'package:nardis/data/soap_constants.dart';
 import 'package:nardis/data/soaps/soap_brand_group.dart';
@@ -13,6 +14,7 @@ import 'package:nardis/data/soaps/special_offers.dart';
 import 'package:nardis/models/change_event.dart';
 import 'package:nardis/models/customer.dart';
 import 'package:nardis/models/user.dart';
+import 'package:nardis/repository/download/download_repository.dart';
 import 'package:nardis/repository/user/user_repository.dart';
 import 'package:nardis/translation_strings.dart';
 import './InputFields.dart';
@@ -38,6 +40,8 @@ AnimationController formAnimationController;
 Animation buttonAnimation;
 Animation<Offset> pulseAnimation;
 String message='';
+VoidCallback _showBottomSheetCallback;
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 registerEvent()
 {
   RxBus.register<ChangeEvent>().listen((event) => setState(() {
@@ -71,11 +75,21 @@ registerEvent()
             Navigator.pushReplacementNamed(context, '/home');
           }
           else if(message=='APP_VERSION_CHECKED_NOTVALID') {
-              
+            _modalBottomSheetDownload();
           }
   
 }));
 }
+
+void _modalBottomSheetDownload(){
+  showModalBottomSheet(
+      context: context,
+      builder: (builder){
+        return DownloadAPK();
+      }
+  );
+}
+
 String securityCode='';
   @override
   void initState() {
@@ -117,15 +131,11 @@ String securityCode='';
     {
       
       UserRepository userRepo=new UserRepository();
-      
       //userRepo.authenticate(username: widget.user.mobile,password: widget.user.password,code: widget.user.code);
       userRepo.authenticateUser(user:widget.user);
-      SoapCategory category=new SoapCategory(context: context);
-      category.call(SoapConstants.METHOD_NAME_CATEGORY, context);
-
-      
-      
-      //Navigator.pushReplacementNamed(context, '/home');
+      /*SoapCategory category=new SoapCategory(context: context);
+      category.call(SoapConstants.METHOD_NAME_CATEGORY, context);*/
+      Navigator.pushReplacementNamed(context, '/loading');
     }
     else{
       Scaffold.of(context).showSnackBar(new SnackBar(
@@ -351,4 +361,52 @@ Container(
     formAnimationController.dispose();
     super.dispose();
   }
+
+
+void _showPersistBottomSheet() {
+  setState(() { // disable the button
+    _showBottomSheetCallback = null;
+  });
+  _scaffoldKey.currentState.showBottomSheet<void>((BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    return new Container(
+      height: 350.0,
+      color: Colors.transparent,
+      child: new Container(
+        decoration: new BoxDecoration(
+            color: Colors.white,
+            borderRadius: new BorderRadius.only(
+                topLeft: const Radius.circular(10.0),
+                topRight: const Radius.circular(10.0))),
+        child:
+        new Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            new ListTile(leading: new Icon(Icons.close),
+              title: new Text('نسخه جدسد برنامه در دسترس میباشد.جهت دریافت و نصب دکمه دریات را لمس کنید'),
+              onTap: () => null,
+            ),
+            new DownloadAPK(),
+            GestureDetector(
+              onTap:() {
+                setState(() { // re-enable the button
+                  _showBottomSheetCallback = null;
+                });
+              },
+              child:
+              new DoDownload(),
+            ),
+          ],
+        ),
+      ),
+    );
+  })
+      .closed.whenComplete(() {
+    if (mounted) {
+      setState(() { // re-enable the button
+        _showBottomSheetCallback = _showPersistBottomSheet;
+      });
+    }
+  });
+}
 }

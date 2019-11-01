@@ -381,7 +381,12 @@ String existance() => Intl.message(
     'Counts',
     name: 'counts',
   );
-  
+
+  String productUnitPrice() => Intl.message(
+    'Product UnitPrice',
+    name: 'productUnitPrice',
+  );
+
     String countincart() => Intl.message(
     'Count in Cart',
     name: 'countincart',
@@ -416,6 +421,46 @@ String existance() => Intl.message(
   String plzlogin() => Intl.message(
     'Please Login!',
     name: 'plzlogin',
+  );
+  String plzEnterCode() => Intl.message(
+    'plzEnterCode',
+    name: 'plzEnterCode',
+  );
+  String description() => Intl.message(
+    'description',
+    name: 'description',
+  );
+  String plzEnterName() => Intl.message(
+    'plzEnterName',
+    name: 'plzEnterName',
+  );
+  String productName() => Intl.message(
+    'productName',
+    name: 'productName',
+  );
+  String productPic() => Intl.message(
+    'productPic',
+    name: 'productPic',
+  );
+  String notYetPickVideo() => Intl.message(
+    'notYetPickVideo',
+    name: 'notYetPickVideo',
+  );
+  String errorLoadingVideo() => Intl.message(
+    'errorLoadingVideo',
+    name: 'errorLoadingVideo',
+  );
+  String pickImageError() => Intl.message(
+    'pickImageError',
+    name: 'pickImageError',
+  );
+  String notYetPickImage() => Intl.message(
+    'notYetPickImage',
+    name: 'notYetPickImage',
+  );
+  String errorPickImageVideo() => Intl.message(
+    'errorPickImageVideo',
+    name: 'errorPickImageVideo',
   );
   String title() => Intl.message('Nardis Shop',
         name: 'title', desc: 'The application title');

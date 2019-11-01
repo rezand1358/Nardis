@@ -23,7 +23,7 @@ class UserRepository {
     @required Customer user,
   }) async {
    await databaseHelper.saveCustomerInfo(user);
-   await databaseHelper.saveUser(new User(code: user.code,mobile: user.mobile,userName: user.mobile,password: user.password));
+   await databaseHelper.saveUser(new User(code: user.code,mobile: user.mobile,userName: user.mobile,password: user.password,admin: user.kind));
     return user.code;
   }
 
@@ -35,6 +35,16 @@ class UserRepository {
       return user.code;
      }
      return '';
+  }
+
+  Future<bool> getUserType() async
+  {
+    User user=await databaseHelper.getUserInfo();
+    if(user!=null)
+    {
+      return user.admin==true;
+    }
+    return false;
   }
   Future<void> deleteToken() async {
     /// delete from keystore/keychain

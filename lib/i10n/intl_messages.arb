@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-07-22T11:10:43.100753",
+  "@@last_modified": "2019-10-09T15:56:59.450424",
   "userName": "Username",
   "@userName": {
     "description": "User Name",
@@ -351,6 +351,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "productUnitPrice": "Product UnitPrice",
+  "@productUnitPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
   "countincart": "Count in Cart",
   "@countincart": {
     "type": "text",
@@ -383,6 +388,56 @@
   },
   "plzlogin": "Please Login!",
   "@plzlogin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "plzEnterCode": "plzEnterCode",
+  "@plzEnterCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "description": "description",
+  "@description": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "plzEnterName": "plzEnterName",
+  "@plzEnterName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productName": "productName",
+  "@productName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "productPic": "productPic",
+  "@productPic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notYetPickVideo": "notYetPickVideo",
+  "@notYetPickVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorLoadingVideo": "errorLoadingVideo",
+  "@errorLoadingVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImageError": "pickImageError",
+  "@pickImageError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notYetPickImage": "notYetPickImage",
+  "@notYetPickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorPickImageVideo": "errorPickImageVideo",
+  "@errorPickImageVideo": {
     "type": "text",
     "placeholders": {}
   },

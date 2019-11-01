@@ -83,6 +83,7 @@ class SearchBloc implements BlocBase {
   @override
   void dispose() {
     itemAdditionController.close();
-
+    getProductController.close();
+    getProductsController.close();
   }
 }

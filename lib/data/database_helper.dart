@@ -33,7 +33,7 @@ class DatabaseHelper {
   initDb() async {
     io.Directory documentsDirectory = await
     getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "nardisdb2.db");
+    String path = join(documentsDirectory.path, "nardisdb3.db");
     var theDb = await openDatabase(path, version: 1, onCreate:
     _onCreate);
     return theDb;
@@ -43,7 +43,7 @@ class DatabaseHelper {
   void _onCreate(Database db, int version) async {
     // When creating the db, create the table
     await db.execute(
-        "CREATE TABLE User(id INTEGER PRIMARY KEY autoincrement, UserName TEXT,Password TEXT,Mobile TEXT,Code TEXT)");
+        "CREATE TABLE User(id INTEGER PRIMARY KEY autoincrement, UserName TEXT,Password TEXT,Mobile TEXT,Code TEXT,Admin INTEGER)");
         
     await db.execute(
         "CREATE TABLE ShopCart(id INTEGER PRIMARY KEY autoincrement, Count TEXT,Amount TEXT,Code TEXT,CatKey TEXT)");
