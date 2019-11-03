@@ -1,0 +1,6 @@
+module install_plugin {
+  umbrella header "install_plugin-umbrella.h"
+
+  export *
+  module * { export * }
+}
